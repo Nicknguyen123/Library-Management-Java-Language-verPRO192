@@ -13,9 +13,9 @@ public class InputHelper {
         this.scanner = scanner;
     }
 
-    public String readStringNonBlank(String messege) {
+    public String readStringNonBlank(String message) {
         while (true) {
-            System.out.print(messege);
+            System.out.print(message);
             String input = scanner.nextLine();
 
             if (Validator.checkEmptyString(input)) {
@@ -27,9 +27,9 @@ public class InputHelper {
         }
     }
 
-    public char readYesNo(String messege) {
+    public char readYesNo(String message) {
         while (true) {
-            String input = readStringNonBlank(messege).toUpperCase();
+            String input = readStringNonBlank(message).toUpperCase();
             char temp = input.charAt(0);
 
             if (!Validator.checkYesNo(temp)) {
@@ -41,9 +41,9 @@ public class InputHelper {
         }
     }
 
-    private int readInt(String messege) {
+    private int readInt(String message) {
         while (true) {
-            System.out.print(messege);
+            System.out.print(message);
             String input = scanner.nextLine().trim();
 
             try {
@@ -54,9 +54,9 @@ public class InputHelper {
         }
     }
 
-    public int readIntInRange(String messege, int start, int end) {
+    public int readIntInRange(String message, int start, int end) {
         while (true) {
-            int result = readInt(messege);
+            int result = readInt(message);
 
             if (!(result >= start && result <= end)) {
                 System.out.printf("❌ Error: Invalid input! Please enter a number between %d and %d.\n",
@@ -69,9 +69,9 @@ public class InputHelper {
         }
     }
 
-    public String readIdMember(String messege) {
+    public String readIdMember(String message) {
         while (true) {
-            String input = readStringNonBlank(messege).toUpperCase();
+            String input = readStringNonBlank(message).toUpperCase();
 
             if (!Validator.checkIdLength(input)) {
                 System.out.println("❌ Invalid ID format! ID must be exactly 6 characters long " +
@@ -90,9 +90,9 @@ public class InputHelper {
         }
     }
 
-    public String readIdPremiumMember(String messege) {
+    public String readIdPremiumMember(String message) {
         while (true) {
-            String input = readStringNonBlank(messege).toUpperCase();
+            String input = readStringNonBlank(message).toUpperCase();
 
             if (!Validator.checkIdLength(input)) {
                 System.out.println("❌ Invalid ID format! ID must be exactly 6 characters long " +
@@ -112,9 +112,9 @@ public class InputHelper {
         }
     }
 
-    public String readIdRegularMember(String messege) {
+    public String readIdRegularMember(String message) {
         while (true) {
-            String input = readStringNonBlank(messege).toUpperCase();
+            String input = readStringNonBlank(message).toUpperCase();
 
             if (!Validator.checkIdRegular(input)) {
                 System.out.println("❌ Invalid ID format! Premium ID must start with " +
@@ -127,9 +127,9 @@ public class InputHelper {
         }
     }
 
-    public String readIdBook(String messege) {
+    public String readIdBook(String message) {
         while (true) {
-            String input = readStringNonBlank(messege).toUpperCase();
+            String input = readStringNonBlank(message).toUpperCase();
 
             if (!Validator.checkIdBook(input)) {
                 System.out.println("❌ Invalid ID format! Book ID must start with " +
@@ -142,9 +142,9 @@ public class InputHelper {
         }
     }
 
-    public String readIdBorrowing(String messege) {
+    public String readIdBorrowing(String message) {
         while (true) {
-            String input = readStringNonBlank(messege).toUpperCase();
+            String input = readStringNonBlank(message).toUpperCase();
 
             if (!Validator.checkIdBorrowing(input)) {
                 System.out.println("❌ Invalid ID format! Borrowing ID must start with " +
@@ -156,9 +156,9 @@ public class InputHelper {
         }
     }
 
-    public String readStringWord(String messege) {
+    public String readStringWord(String message) {
         while (true) {
-            String input = readStringNonBlank(messege);
+            String input = readStringNonBlank(message);
 
             if (!Validator.checkStringWord(input)) {
                 System.out.println("❌ Invalid input! Only letters and spaces are allowed.");
@@ -170,9 +170,9 @@ public class InputHelper {
         }
     }
 
-    public String readPhoneNumber(String messege) {
+    public String readPhoneNumber(String message) {
         while (true) {
-            String input = readStringNonBlank(messege);
+            String input = readStringNonBlank(message);
 
             if (!Validator.checkPhoneNumber(input)) {
                 System.out.println("❌ Invalid phone number format!");
@@ -186,9 +186,9 @@ public class InputHelper {
         }
     }
 
-    public String readEmail(String messege) {
+    public String readEmail(String message) {
         while (true) {
-            String input = readStringNonBlank(messege);
+            String input = readStringNonBlank(message);
 
             if (!Validator.checkEmail(input)) {
                 System.out.println("❌ Invalid email format!");
@@ -201,9 +201,9 @@ public class InputHelper {
         }
     }
 
-    public String readTitle(String messge) {
+    public String readTitle(String message) {
         while (true) {
-            String input = readStringNonBlank(messge);
+            String input = readStringNonBlank(message);
 
             if (!Validator.checkTitle(input)) {
                 System.out.println("❌ Invalid Book Title!");
@@ -218,9 +218,9 @@ public class InputHelper {
         }
     }
 
-    public LocalDate readDate(String messege) {
+    public LocalDate readDate(String message) {
         while (true) {
-            String date = readStringNonBlank(messege);
+            String date = readStringNonBlank(message);
 
             try {
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
