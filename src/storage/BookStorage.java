@@ -8,8 +8,8 @@ import java.io.*;
 import java.util.List;
 
 public class BookStorage {
-    public static final String FOLDER = "data";
-    public static final String FILE_PATH = "data/book.txt";
+    private static final String FOLDER = "data";
+    private static final String FILE_PATH = "data/book.txt";
 
     public void saveOneBook(Book book) {
         File folder = new File(FOLDER);

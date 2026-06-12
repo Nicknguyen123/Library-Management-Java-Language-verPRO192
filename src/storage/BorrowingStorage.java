@@ -14,8 +14,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class BorrowingStorage {
-    public static final String FOLDER = "data";
-    public static final String FILE_PATH = "data/borrowing.txt";
+    private static final String FOLDER = "data";
+    private static final String FILE_PATH = "data/borrowing.txt";
     private BookService bookService;
     private MemberService memberService;
 

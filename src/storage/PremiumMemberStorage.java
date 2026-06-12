@@ -9,8 +9,8 @@ import java.io.*;
 import java.util.List;
 
 public class PremiumMemberStorage {
-    public static final String FOLDER = "data";
-    public static final String FILE_PATH = "data/premiumMember.txt";
+    private static final String FOLDER = "data";
+    private static final String FILE_PATH = "data/premiumMember.txt";
 
     public void saveOnePremiumMember(PremiumMember premiumMember) {
         File folder = new File(FOLDER);

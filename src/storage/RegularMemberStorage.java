@@ -9,8 +9,8 @@ import java.util.List;
 import java.util.function.Consumer;
 
 public class RegularMemberStorage {
-    public static final String FOLDER = "data";
-    public static final String FILE_PATH = "data/regularMember.txt";
+    private static final String FOLDER = "data";
+    private static final String FILE_PATH = "data/regularMember.txt";
 
     public void saveOneRegularMember(RegularMember regularMember) {
         File folder = new File(FOLDER);
