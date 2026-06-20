@@ -98,14 +98,8 @@ public class Book {
     }
 
     public void showBookInfo() {
-        System.out.println("🔖 BookingId: " + bookId);
-        System.out.println("📖 Title: " + title);
-        System.out.println("✍️ Author: " + author);
-        System.out.println("🎭 Genre: " + genre);
-        System.out.println("📅 Publication Year: " + publicationYear);
-        System.out.println("🔢 Quantity: " + quantity);
-        System.out.println("📊 BorrowCount: " + borrowCount);
-        System.out.println("📦 Total Borrowing Records: " + totalBorrowing);
-        System.out.println("💡 Status: " + getStatus());
+        System.out.printf("| %-10s | %-25s | %-20s | %-15s | %-10d | %-10d | %-10d | %-10d | %-12s |\n",
+                bookId, title, author, genre, publicationYear,
+                quantity, borrowCount, totalBorrowing, getStatus());
     }
 }

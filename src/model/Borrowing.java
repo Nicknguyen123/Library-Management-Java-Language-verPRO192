@@ -50,10 +50,7 @@ public class Borrowing {
     }
 
     public void setReturnDate(LocalDate returnDate) {
-        if (returnDate == null) {
-            return;
-        }
-        this.returnDate = returnDate;
+        this.returnDate = Validator.validateDate(returnDate);
         long newFine = calculateTotalFine();
         this.fine = newFine;
     }
@@ -101,17 +98,9 @@ public class Borrowing {
 
     public void showBorrowingInfo() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        System.out.println("🆔 TransactionId: " + transactionId);
-        System.out.println("📘 BookId: " + book.getBookId());
-        System.out.println("🪪 MemberId: " + member.getId());
-        System.out.println("🛫 Borrow Date: " + borrowDate.format(formatter));
-        System.out.println("⏳ Due Date: " + dueDate.format(formatter));
-        if (returnDate == null) {
-            System.out.println("🛬 Return Date: " + returnDate);
-        } else {
-            System.out.println("🛬 Return Date: " + returnDate.format(formatter));
-        }
-
-        System.out.println("💰 Fine: " + fine);
+        System.out.printf("| %-15s | %-12s | %-12s | %-12s | %-12s | %-12s | %-10d |\n",
+                transactionId, book.getBookId(), member.getId(), borrowDate.format(formatter),
+                dueDate.format(formatter), (returnDate == null) ? "N/A" : returnDate.format(formatter),
+                fine);
     }
 }

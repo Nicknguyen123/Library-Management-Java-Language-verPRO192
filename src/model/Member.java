@@ -61,11 +61,11 @@ public abstract class Member {
         return totalBorrowing;
     }
 
-    public void setTotalBorrowing(int totalBorrowing) {
+    public final void setTotalBorrowing(int totalBorrowing) {
         this.totalBorrowing = Validator.validateNumber(totalBorrowing);
     }
 
-    public abstract void showMemberType();
+    public abstract String showMemberType();
 
     public abstract void showMemberInfo();
 
