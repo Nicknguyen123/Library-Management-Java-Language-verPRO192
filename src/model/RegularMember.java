@@ -10,6 +10,13 @@ public class RegularMember extends Member {
         this.fineRate = 5000;
     }
 
+    public RegularMember(String id, String name, String phone, String email, int currentBorrowedCount,
+                         int totalBorrowing) {
+        super(id, name, phone, email, currentBorrowedCount, totalBorrowing);
+        this.limitBorrow = 1;
+        this.fineRate = 5000;
+    }
+
     @Override
     public String showMemberType() {
         return "Regular Member";

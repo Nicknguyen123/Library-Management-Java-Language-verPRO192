@@ -23,6 +23,18 @@ public class Book {
         this.totalBorrowing = 0;
     }
 
+    public Book(String bookId, String title, String author, String genre, int publicationYear, int quantity,
+                int borrowCount, int totalBorrowing) {
+        this.bookId = bookId;
+        this.title = title;
+        this.author = author;
+        this.genre = genre;
+        this.publicationYear = publicationYear;
+        this.quantity = quantity;
+        this.borrowCount = borrowCount;
+        this.totalBorrowing = totalBorrowing;
+    }
+
     public String getBookId() {
         return bookId;
     }
@@ -101,5 +113,24 @@ public class Book {
         System.out.printf("| %-10s | %-25s | %-20s | %-15s | %-10d | %-10d | %-10d | %-10d | %-12s |\n",
                 bookId, title, author, genre, publicationYear,
                 quantity, borrowCount, totalBorrowing, getStatus());
+    }
+
+    public void increaseBorrowCount() {
+        int tempQuantity = quantity - borrowCount;
+
+        if (tempQuantity <= 0) {
+            throw new IllegalArgumentException("❌ This book is currently out of stock.");
+        }
+
+        borrowCount ++;
+        totalBorrowing ++;
+    }
+
+    public void decreaseBorrowCount() {
+        if (borrowCount <= 0) {
+            throw new IllegalArgumentException("❌ Cannot reduce borrow count. There are no books currently borrowed.");
+        }
+
+        borrowCount --;
     }
 }

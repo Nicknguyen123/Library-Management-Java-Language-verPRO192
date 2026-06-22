@@ -10,6 +10,13 @@ public class PremiumMember extends Member {
         this.fineRate = 3000;
     }
 
+    public PremiumMember(String id, String name, String phone, String email, int currentBorrowedCount,
+                         int totalBorrowing) {
+        super(id, name, phone, email, currentBorrowedCount, totalBorrowing);
+        this.limitBorrow = 3;
+        this.fineRate = 3000;
+    }
+
     @Override
     public String showMemberType() {
         return "Premium Member";

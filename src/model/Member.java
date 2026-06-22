@@ -21,6 +21,15 @@ public abstract class Member {
         this.totalBorrowing = 0;
     }
 
+    public Member(String id, String name, String phone, String email, int currentBorrowedCount, int totalBorrowing) {
+        this.id = id;
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.currentBorrowedCount = currentBorrowedCount;
+        this.totalBorrowing = totalBorrowing;
+    }
+
     public String getId() {
         return id;
     }
@@ -74,4 +83,21 @@ public abstract class Member {
 
     public abstract long calculateFine(long lateDay);
 
+    public void increaseBorrowCount() {
+        if (currentBorrowedCount >= getLimitBorrow()) {
+            throw new IllegalArgumentException("❌ Borrowing limit reached: This Member has already " +
+                    "borrowed " + getLimitBorrow() + " books and cannot borrow more.");
+        }
+
+        currentBorrowedCount ++;
+        totalBorrowing ++;
+    }
+
+    public void decreaseBorrowCount() {
+        if (currentBorrowedCount <= 0) {
+            throw new IllegalArgumentException("📭 This member hasn't borrowed any books yet!");
+        }
+
+        currentBorrowedCount --;
+    }
 }

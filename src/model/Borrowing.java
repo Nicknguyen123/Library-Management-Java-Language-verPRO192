@@ -25,6 +25,17 @@ public class Borrowing {
         this.fine = 0;
     }
 
+    public Borrowing(String transactionId, Book book, Member member, LocalDate borrowDate,
+                     LocalDate dueDate, LocalDate returnDate, long fine) {
+        this.transactionId = transactionId;
+        this.book = book;
+        this.member = member;
+        this.borrowDate = borrowDate;
+        this.dueDate = dueDate;
+        this.returnDate = returnDate;
+        this.fine = fine;
+    }
+
     public String getTransactionId() {
         return transactionId;
     }
