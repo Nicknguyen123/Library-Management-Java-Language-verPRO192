@@ -33,6 +33,10 @@ public class BorrowingService {
         this.memberRepository = memberRepository;
     }
 
+    public List<Borrowing> getBorrowingList() {
+        return new ArrayList<>(borrowingList);
+    }
+
     public void borrowBook(Borrowing borrowing) {
         checkBorrowNull(borrowing);
 
@@ -169,6 +173,20 @@ public class BorrowingService {
         for (Borrowing borrowing : borrowingList) {
             if (borrowing.getTransactionId().equals(safeId)) {
                 return borrowing;
+            }
+        }
+
+        return null;
+    }
+
+    private Borrowing findBorrowingByReturnDate(String id) {
+        String safeId = Validator.validateBasicString(id);
+
+        for (Borrowing borrowing : borrowingList) {
+            if (borrowing.getReturnDate() == null) {
+                if (borrowing.getTransactionId().equals(safeId)) {
+                    return borrowing;
+                }
             }
         }
 

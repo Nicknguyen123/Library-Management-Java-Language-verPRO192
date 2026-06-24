@@ -1,8 +1,6 @@
 package repository;
 
-import model.Book;
-import model.Borrowing;
-import model.Member;
+import model.*;
 import service.BookService;
 import service.BorrowingService;
 import service.MemberService;
@@ -107,8 +105,21 @@ public class BorrowingRepository {
         String borrowId = source[0];
         String bookId = source[1];
         Book book = bookService.findBookById(bookId);
+        if (book == null) {
+            book = new Book(bookId, "Book has been removed from the system.", "", "",
+                    0, 0);
+        }
         String memberId = source[2];
         Member member = memberService.findMemberById(memberId);
+        if (member == null) {
+            if (memberId.startsWith("PRE")) {
+                member = new PremiumMember(memberId, "Member has been removed from the system.",
+                        "", "");
+            } else {
+                member = new RegularMember(memberId, "Member has been removed from the system.",
+                        "", "");
+            }
+        }
         LocalDate borrowDate = LocalDate.parse(source[3]);
         LocalDate dueDate = LocalDate.parse(source[4]);
         LocalDate returnDate = null;
