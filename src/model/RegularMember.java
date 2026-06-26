@@ -18,15 +18,21 @@ public class RegularMember extends Member {
     }
 
     @Override
-    public String showMemberType() {
-        return "Regular Member";
+    public void showMemberType() {
+        System.out.println("👤 Status: Regular Member");
     }
 
     @Override
     public void showMemberInfo() {
-        System.out.printf("| %-10s | %-12s | %-20s | %-12s | %-25s | %-10d | %-10d | %-12d | %-10d |\n",
-                showMemberType(), super.getId(), super.getName(), super.getPhone(), super.getEmail(),
-                super.getCurrentBorrowedCount(), super.getTotalBorrowing(), limitBorrow, fineRate);
+        showMemberType();
+        System.out.println("🪪 Id: " + super.getId());
+        System.out.println("👤 Name: " + super.getName());
+        System.out.println("📞 Phone: " + super.getPhone());
+        System.out.println("📧 Email: " + super.getEmail());
+        System.out.println("📚 Current Borrowed Book: " + super.getCurrentBorrowedCount());
+        System.out.println("📦 Total Borrowing Records: " + super.getTotalBorrowing());
+        System.out.println("🚫 Limit Borrow: " + limitBorrow);
+        System.out.println("📈 FineRate: " + fineRate);
     }
 
     @Override

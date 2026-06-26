@@ -78,7 +78,7 @@ public class MemberService {
         String safePhone = Validator.validateBasicString(newPhone);
 
         if (checkDuplicatePhone(safePhone)) {
-            throw new IllegalArgumentException("❌ Phone number already registered: " + member.getPhone());
+            throw new IllegalArgumentException("❌ Phone number already registered: " + safePhone);
         }
 
         member.setPhone(safePhone);
@@ -91,7 +91,7 @@ public class MemberService {
         String safeEmail = Validator.validateBasicEmail(newEmail);
 
         if (checkDuplicateEmail(safeEmail)) {
-            throw new IllegalArgumentException("❌ Email already registered: " + member.getEmail());
+            throw new IllegalArgumentException("❌ Email already registered: " + safeEmail);
         }
 
         member.setEmail(safeEmail);
@@ -104,18 +104,11 @@ public class MemberService {
             return;
         }
 
-        String border = "+----------------------------------------------------------------------------------" +
-                "---------------------------------------------------------------------+";
-
-        System.out.println(border);
-        System.out.printf("| %-10s | %-12s | %-20s | %-12s | %-25s | %-10s | %-10s | %-12s | %-10s |\n",
-                "👑 TYPE", "🆔 ID", "👤 NAME", "📞 PHONE", "📧 EMAIL", "📚 CUR_BOOK", "📈 TOTAL",
-                "⚠️ LIMIT", "💸 FINE_RATE");
-        System.out.println(border);
-
-        Consumer<Member> memberConsumer = (member) -> member.showMemberInfo();
+        Consumer<Member> memberConsumer = (member) -> {
+            member.showMemberInfo();
+            System.out.println("👥━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+        };
         memberList.forEach(memberConsumer);
-        System.out.println(border);
     }
 
     public Member findMemberById(String id) {
@@ -153,11 +146,26 @@ public class MemberService {
         }
     }
 
-    private boolean checkDuplicatePhone(String phoneNumber) {
+    public boolean checkDuplicateId(String id) {
+        String safeId = Validator.validateBasicString(id);
+
+        for (Member member : memberList) {
+            if (member.getId().equals(safeId)) {
+                System.out.println("❌ This Member already exists in the system. " +
+                        "Duplicate ID: " + safeId);
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public boolean checkDuplicatePhone(String phoneNumber) {
         String safePhone = Validator.validateBasicString(phoneNumber);
 
         for (Member member : memberList) {
             if (member.getPhone().equals(safePhone)) {
+                System.out.println("❌ Phone number already registered: " + safePhone);
                 return true;
             }
         }
@@ -165,15 +173,18 @@ public class MemberService {
         return false;
     }
 
-    private boolean checkDuplicateEmail(String email) {
+    public boolean checkDuplicateEmail(String email) {
         String safeEmail = Validator.validateBasicEmail(email);
 
         for (Member member : memberList) {
             if (member.getEmail().equals(safeEmail)) {
+                System.out.println("❌ Email already registered: " + safeEmail);
                 return true;
             }
         }
 
         return false;
     }
+
+
 }

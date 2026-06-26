@@ -74,7 +74,7 @@ public abstract class Member {
         this.totalBorrowing = Validator.validateNumber(totalBorrowing);
     }
 
-    public abstract String showMemberType();
+    public abstract void showMemberType();
 
     public abstract void showMemberInfo();
 
