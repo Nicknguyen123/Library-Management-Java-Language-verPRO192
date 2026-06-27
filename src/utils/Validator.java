@@ -85,6 +85,14 @@ public class Validator {
         return true;
     }
 
+    public static boolean checkBookId(String id) {
+        if (!id.matches(BOOK_ID_FORMAT)) {
+            return false;
+        }
+
+        return true;
+    }
+
     public static boolean checkName(String s) {
         for (int i = 0; i < s.length(); i++) {
             if (!Character.isLetter(s.charAt(i)) && !Character.isWhitespace(s.charAt(i))) {
@@ -106,6 +114,31 @@ public class Validator {
     public static boolean checkEmail(String s) {
         if (!s.matches(EMAIL_FORMAT)) {
             return false;
+        }
+
+        return true;
+    }
+
+    public static boolean checkTittle(String s) {
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            if (!Character.isLetter(c) && !Character.isDigit(c) && !Character.isWhitespace(c) &&
+            c != '-' && c != ':' && c != ',' && c != '.' && c != '!' && c != '?' &&
+                    c != '(' && c != ')' && c != '\'' && c != '"' && c != '&') {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public static boolean checkAuthor(String s) {
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            if (!Character.isLetter(c) && !Character.isWhitespace(c) && c != '.'
+                    && c != '-' && c != '\'') {
+                return false;
+            }
         }
 
         return true;

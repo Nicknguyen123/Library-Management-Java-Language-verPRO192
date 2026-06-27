@@ -2,6 +2,8 @@ package service;
 
 import com.sun.org.apache.regexp.internal.RE;
 import model.Member;
+import model.PremiumMember;
+import model.RegularMember;
 import repository.MemberRepository;
 import utils.Validator;
 
@@ -105,10 +107,19 @@ public class MemberService {
         }
 
         Consumer<Member> memberConsumer = (member) -> {
-            member.showMemberInfo();
-            System.out.println("👥━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+            if (member instanceof PremiumMember) {
+                member.showMemberInfo();
+                System.out.println("👥━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+            }
         };
         memberList.forEach(memberConsumer);
+
+        for (Member member : memberList) {
+            if (member instanceof RegularMember) {
+                member.showMemberInfo();
+                System.out.println("👥━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+            }
+        }
     }
 
     public Member findMemberById(String id) {
@@ -144,20 +155,6 @@ public class MemberService {
         if (member == null) {
             throw new IllegalArgumentException("❌ Member cannot be null");
         }
-    }
-
-    public boolean checkDuplicateId(String id) {
-        String safeId = Validator.validateBasicString(id);
-
-        for (Member member : memberList) {
-            if (member.getId().equals(safeId)) {
-                System.out.println("❌ This Member already exists in the system. " +
-                        "Duplicate ID: " + safeId);
-                return true;
-            }
-        }
-
-        return false;
     }
 
     public boolean checkDuplicatePhone(String phoneNumber) {

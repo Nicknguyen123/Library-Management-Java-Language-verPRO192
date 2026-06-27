@@ -30,6 +30,13 @@ public class BookService {
                     "Duplicate ID: " + book.getBookId());
         }
 
+        boolean isDuplicate = isDuplicateBook(null, book.getTitle(), book.getAuthor(),
+                book.getPublicationYear());
+        if (isDuplicate) {
+            throw new IllegalArgumentException("❌ This book is already registered in the system: "
+                    + book.getTitle());
+        }
+
         bookList.add(book);
         bookRepository.saveOneBook(book);
     }
@@ -58,6 +65,13 @@ public class BookService {
 
         String safeTitle = Validator.validateBasicString(newTitle);
 
+        boolean isDuplicate = isDuplicateBook(book.getBookId(), newTitle, book.getAuthor(),
+                book.getPublicationYear());
+        if (isDuplicate) {
+            throw new IllegalArgumentException("❌ Cannot update title. A book named '" + safeTitle +
+                    "' by " + book.getAuthor() + " (" + book.getPublicationYear() + ") already exists in the system.");
+        }
+
         book.setTitle(safeTitle);
         bookRepository.saveAllBook(bookList);
     }
@@ -66,6 +80,13 @@ public class BookService {
         checkBookNull(book);
 
         String safeAuthor = Validator.validateBasicString(newAuthor);
+
+        boolean isDuplicate = isDuplicateBook(book.getBookId(), book.getTitle(), newAuthor,
+                book.getPublicationYear());
+        if (isDuplicate) {
+            throw new IllegalArgumentException("❌ Cannot update author. A book named '" + book.getTitle() +
+                    "' by " + safeAuthor + " (" + book.getPublicationYear() + ") already exists in the system.");
+        }
 
         book.setAuthor(safeAuthor);
         bookRepository.saveAllBook(bookList);
@@ -84,6 +105,12 @@ public class BookService {
         checkBookNull(book);
 
         int safeYear = Validator.validateNumber(newYear);
+
+        boolean isDuplicate = isDuplicateBook(book.getBookId(), book.getTitle(), book.getAuthor(), newYear);
+        if (isDuplicate) {
+            throw new IllegalArgumentException("❌ Cannot update publication year. A book named '" + book.getTitle() +
+                    "' by " + book.getAuthor() + " (" + newYear + ") already exists in the system.");
+        }
 
         book.setPublicationYear(safeYear);
         bookRepository.saveAllBook(bookList);
@@ -109,18 +136,11 @@ public class BookService {
             return;
         }
 
-        String border = "+---------------------------------------------------------------------------------" +
-                "------------------------------------------------------------------------+";
-
-        System.out.println(border);
-        System.out.printf("| %-10s | %-25s | %-20s | %-15s | %-10s | %-10s | %-10s | %-10s | %-12s |\n",
-                "🆔 BOOK ID", "📖 TITLE", "✍️ AUTHOR", "🎭 GENRE", "📅 PUB_YEAR", "📦 QUANTITY",
-                "📚 BORROWED", "📈 TOTAL_BOR", "✨ STATUS");
-        System.out.println(border);
-
-        Consumer<Book> bookConsumer = (book) -> book.showBookInfo();
+        Consumer<Book> bookConsumer = (book) -> {
+            book.showBookInfo();
+            System.out.println("📖━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+        };
         bookList.forEach(bookConsumer);
-        System.out.println(border);
     }
 
     public Book findBookById(String bookId) {
@@ -190,5 +210,26 @@ public class BookService {
         if (book == null) {
             throw new IllegalArgumentException("❌ Book cannot be null");
         }
+    }
+
+    private boolean isDuplicateBook(String bookId, String title, String author, int publicationYear) {
+        String safeTitle = Validator.validateBasicString(title);
+        String safeAuthor = Validator.validateBasicString(author);
+        int safeYear = Validator.validateNumber(publicationYear);
+
+        Book tempBook = new Book("Check duplicate", safeTitle, safeAuthor, "check duplicate",
+                0, 0);
+
+        for (Book book : bookList) {
+            if (bookId != null && book.getBookId().equals(bookId)) {
+                continue;
+            }
+
+            if (book.checkDuplicateBook(tempBook)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

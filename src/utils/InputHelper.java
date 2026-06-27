@@ -54,6 +54,21 @@ public class InputHelper {
         }
     }
 
+    public String readBookId(String message) {
+        while (true) {
+            String input = readStringNonEmpty(message).toUpperCase();
+
+            if (!Validator.checkBookId(input)) {
+                System.out.println("❌ Invalid ID format! Book ID must start with " +
+                        "'BK' followed by 3 digits (e.g., BK001).");
+                continue;
+            }
+
+            System.out.println("🆔 Valid ID! Book format checked successfully.");
+            return input;
+        }
+    }
+
     public String readName(String message) {
         while (true) {
             String input = readStringNonEmpty(message);
@@ -100,6 +115,36 @@ public class InputHelper {
             }
 
             System.out.println("✅ Email format is valid!");
+            return input;
+        }
+    }
+
+    public String readTitle(String message) {
+        while (true) {
+            String input = readStringNonEmpty(message);
+
+            if (!Validator.checkTittle(input)) {
+                System.out.println("❌ Invalid Title: Only letters, digits, spaces, and basic punctuation " +
+                        "(-, :, ., ,, !, ?, (), ', \", &) are allowed.");
+                continue;
+            }
+
+            System.out.println("✅ Success: Valid Title!");
+            return input;
+        }
+    }
+
+    public String readAuthor(String message) {
+        while (true) {
+            String input = readStringNonEmpty(message);
+
+            if (!Validator.checkAuthor(input)) {
+                System.out.println("❌ Invalid Author: Author name can only contain letters, spaces, and " +
+                        "basic punctuation (., -, ').");
+                continue;
+            }
+
+            System.out.println("✅ Success: Valid Author!");
             return input;
         }
     }

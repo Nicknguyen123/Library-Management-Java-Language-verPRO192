@@ -12,9 +12,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MemberMenu {
-    private ConsoleHelper consoleHelper;
-    private InputHelper inputHelper;
-    private MemberService memberService;
+    private final ConsoleHelper consoleHelper;
+    private final InputHelper inputHelper;
+    private final MemberService memberService;
 
     public MemberMenu(ConsoleHelper consoleHelper, InputHelper inputHelper, MemberService memberService) {
         this.consoleHelper = consoleHelper;
@@ -65,7 +65,7 @@ public class MemberMenu {
             String id = null;
             do {
                 id = inputHelper.readMemberId("📝 Enter Member ID: ");
-            } while (memberService.checkDuplicateId(id));
+            } while (memberService.findMemberById(id) != null);
 
             String name = inputHelper.readName("📝 Enter Member Name (Max 60 chars): ");
             name = StringUtils.beautify(name);
@@ -364,6 +364,8 @@ public class MemberMenu {
                 consoleHelper.pause();
                 break;
             } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+
                 yesNo = inputHelper.readYesNo("🔄 Do you want to update another phone number (Y/N): ");
 
                 if (yesNo == 'Y') {
@@ -392,6 +394,8 @@ public class MemberMenu {
                 consoleHelper.pause();
                 break;
             } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+
                 yesNo = inputHelper.readYesNo("🔄 Do you want to update another email (Y/N): ");
 
                 if (yesNo == 'Y') {
@@ -405,9 +409,7 @@ public class MemberMenu {
 
     private void displayAllMember() {
         consoleHelper.clearScreen();
-        System.out.println("👥━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━👥");
-        System.out.println("   📋                DISPLAY MEMBERS                   📋   ");
-        System.out.println("👥━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━👥");
+        consoleHelper.displayMemberHeading();
 
         memberService.showAllMember();
         consoleHelper.pause();

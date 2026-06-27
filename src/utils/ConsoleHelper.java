@@ -45,6 +45,8 @@ public class ConsoleHelper {
         System.out.println("✨━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━✨");
     }
 
+
+// ====================== Member ==========================
     public void memberMenu() {
         System.out.println("👥━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━👥");
         System.out.println("   ⚙️                 MEMBER MANAGEMENT                ⚙️        ");
@@ -127,10 +129,132 @@ public class ConsoleHelper {
         System.out.println("💎━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━💎");
     }
 
+    public void displayMemberHeading() {
+        System.out.println("👥━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━👥");
+        System.out.println("   📋                DISPLAY MEMBERS                   📋   ");
+        System.out.println("👥━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━👥");
+    }
+
     public void memberIdNote() {
         System.out.println("⚠️  NOTE: ID prefix determines Member Type:");
         System.out.println("   - REGULAR Member: ID must start with 'REG' (e.g., REG001)");
         System.out.println("   - PREMIUM Member: ID must start with 'PRE' (e.g., PRE001)");
         System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+    }
+
+    //============================================= BOOK ==============================================
+    public void bookMenu() {
+        System.out.println("📘━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━📘");
+        System.out.println("   📚                BOOK MANAGEMENT                   📚        ");
+        System.out.println("📘━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━📘");
+        System.out.println("   1. ➕ Add New Book");
+        System.out.println("   2. ❌ Delete Book");
+        System.out.println("   3. 🔍 Search Books");
+        System.out.println("   4. 📝 Update Book Information");
+        System.out.println("   5. 📋 Display All Books");
+        System.out.println("   0. ↩️ Back to Main Menu");
+        System.out.println("📘━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━📘");
+    }
+
+    public void addBookHeading() {
+        System.out.println("📖━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━📖");
+        System.out.println("   📚                  ADD NEW BOOK                    📚        ");
+        System.out.println("📖━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━📖");
+    }
+
+    public void deleteBookHeading() {
+        System.out.println("❌━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━❌");
+        System.out.println("   🗑️                  DELETE BOOK                     🗑️        ");
+        System.out.println("❌━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━❌");
+    }
+
+    public void searchBookMenu() {
+        System.out.println("📚━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━📚");
+        System.out.println("   🔍                  SEARCH BOOK MENU                🔍   ");
+        System.out.println("📚━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━📚");
+        System.out.println("   👉  1. Search by Book Title  📖                           ");
+        System.out.println("   👉  2. Search by Author Name ✒️                           ");
+        System.out.println("   👉  3. Search by Book Genre  🏷️                           ");
+        System.out.println("   ❌  0. Back to Book Menu                                ");
+        System.out.println("📚━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━📚");
+    }
+
+    public void searchByTitleHeading() {
+        System.out.println("📖━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━📖");
+        System.out.println("   🔍               SEARCH BY BOOK TITLE               🔍   ");
+        System.out.println("📖━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━📖");
+    }
+
+    public void searchByAuthorHeading() {
+        System.out.println("✒️━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━✒️");
+        System.out.println("   🔍               SEARCH BY AUTHOR NAME              🔍   ");
+        System.out.println("✒️━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━✒️");
+    }
+
+    public void searchByGenreHeading() {
+        System.out.println("🏷️━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━🏷️");
+        System.out.println("   🔍               SEARCH BY BOOK GENRE               🔍   ");
+        System.out.println("🏷️━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━🏷️");
+    }
+
+    public void updateBookHeading() {
+        System.out.println("📝━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━📝");
+        System.out.println("   ⚙️               UPDATE BOOK INTERFACE               ⚙️   ");
+        System.out.println("📝━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━📝");
+    }
+
+    public void updateBookMenu() {
+        System.out.println("📚━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━📚");
+        System.out.println("   📝                  UPDATE BOOK INFO                📝   ");
+        System.out.println("📚━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━📚");
+        System.out.println("   👉  1. Update Book Title  📖                           ");
+        System.out.println("   👉  2. Update Author Name ✒️                           ");
+        System.out.println("   👉  3. Update Book Genre  🏷️                           ");
+        System.out.println("   👉  4. Update Publication Year 📅                      ");
+        System.out.println("   👉  5. Update Total Quantity 🔢 (Optional)             ");
+        System.out.println("   ❌  0. Back to Main Menu                                ");
+        System.out.println("📚━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━📚");
+    }
+
+    public void updateBookTitleHeading() {
+        System.out.println("📖━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━📖");
+        System.out.println("   ⚙️                 UPDATE BOOK TITLE                 ⚙️   ");
+        System.out.println("📖━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━📖");
+    }
+
+    public void updateBookAuthorHeading() {
+        System.out.println("✒️━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━✒️");
+        System.out.println("   ⚙️                 UPDATE AUTHOR NAME                ⚙️   ");
+        System.out.println("✒️━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━✒️");
+    }
+
+    public void updateBookGenreHeading() {
+        System.out.println("🏷️━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━🏷️");
+        System.out.println("   ⚙️                 UPDATE BOOK GENRE                 ⚙️   ");
+        System.out.println("🏷️━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━🏷️");
+    }
+
+    public void updateBookYearHeading() {
+        System.out.println("📅━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━📅");
+        System.out.println("   ⚙️             UPDATE PUBLICATION YEAR               ⚙️   ");
+        System.out.println("📅━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━📅");
+    }
+
+    public void updateBookQuantityHeading() {
+        System.out.println("🔢━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━🔢");
+        System.out.println("   ⚙️                 UPDATE BOOK QUANTITY              ⚙️   ");
+        System.out.println("🔢━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━🔢");
+    }
+
+    public void displayBookHeading() {
+        System.out.println("📚━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━📚");
+        System.out.println("   📋               DISPLAY ALL BOOKS                  📋   ");
+        System.out.println("📚━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━📚");
+    }
+
+    public void bookIdNote() {
+        System.out.println("⚠️ ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ ⚠️");
+        System.out.println("   [ERROR] ID must start with 'BK' followed by 3 digits (e.g., BK001, BK015).");
+        System.out.println("⚠️ ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ ⚠️");
     }
 }

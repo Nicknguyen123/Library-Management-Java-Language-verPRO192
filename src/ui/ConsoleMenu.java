@@ -4,9 +4,9 @@ import utils.ConsoleHelper;
 import utils.InputHelper;
 
 public class ConsoleMenu {
-    private ConsoleHelper consoleHelper;
-    private InputHelper inputHelper;
-    private MemberMenu memberMenu;
+    private final ConsoleHelper consoleHelper;
+    private final InputHelper inputHelper;
+    private final MemberMenu memberMenu;
 
     public ConsoleMenu(ConsoleHelper consoleHelper, InputHelper inputHelper, MemberMenu memberMenu) {
         this.consoleHelper = consoleHelper;
