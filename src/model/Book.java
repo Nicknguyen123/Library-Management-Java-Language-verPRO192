@@ -137,10 +137,16 @@ public class Book {
         System.out.println("💡 Status: " + getStatus());
     }
 
-    public void increaseBorrowCount() {
-        int tempQuantity = quantity - borrowCount;
+    public int getCurrentQuantity() {
+        return quantity - borrowCount;
+    }
 
-        if (tempQuantity <= 0) {
+    public boolean checkAvailableQuantity() {
+        return getCurrentQuantity() > 0;
+    }
+
+    public void increaseBorrowCount() {
+        if (!checkAvailableQuantity()) {
             throw new IllegalArgumentException("❌ This book is currently out of stock.");
         }
 

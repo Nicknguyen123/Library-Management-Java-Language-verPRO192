@@ -83,6 +83,10 @@ public abstract class Member {
 
     public abstract long calculateFine(long lateDay);
 
+    public boolean checkReachLimit() {
+        return currentBorrowedCount >= getLimitBorrow();
+    }
+
     public void increaseBorrowCount() {
         if (currentBorrowedCount >= getLimitBorrow()) {
             throw new IllegalArgumentException("❌ Borrowing limit reached: This Member has already " +

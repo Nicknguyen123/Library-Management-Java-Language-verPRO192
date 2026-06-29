@@ -65,7 +65,7 @@ public class MemberMenu {
             String id = null;
             do {
                 id = inputHelper.readMemberId("📝 Enter Member ID: ");
-            } while (memberService.findMemberById(id) != null);
+            } while (memberService.checkDuplicateId(id));
 
             String name = inputHelper.readName("📝 Enter Member Name (Max 60 chars): ");
             name = StringUtils.beautify(name);

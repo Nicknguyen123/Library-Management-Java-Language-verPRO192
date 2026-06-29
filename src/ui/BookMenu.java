@@ -68,7 +68,7 @@ public class BookMenu {
             String id = null;
             do {
                 id = inputHelper.readBookId("📖 Enter Book ID: ");
-            } while (bookService.findBookById(id) != null);
+            } while (bookService.checkDuplicateId(id));
 
             String title = inputHelper.readTitle("📝 Enter Book Title: ");
             title = StringUtils.beautify(title);

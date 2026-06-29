@@ -109,9 +109,20 @@ public class Borrowing {
 
     public void showBorrowingInfo() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        System.out.printf("| %-15s | %-12s | %-12s | %-12s | %-12s | %-12s | %-10d |\n",
-                transactionId, book.getBookId(), member.getId(), borrowDate.format(formatter),
-                dueDate.format(formatter), (returnDate == null) ? "N/A" : returnDate.format(formatter),
-                fine);
+        System.out.println("🆔 TransactionId: " + transactionId);
+        System.out.println("📘 BookId: " + book.getBookId());
+        System.out.println("🪪 MemberId: " + member.getId());
+        System.out.println("🛫 Borrow Date: " + borrowDate.format(formatter));
+        System.out.println("⏳ Due Date: " + dueDate.format(formatter));
+        System.out.println("🛬 Return Date: " + ((returnDate == null) ? "N/A" : returnDate.format(formatter)));
+        System.out.println("💰 Fine: " + fine);
+    }
+
+    public boolean checkBorrowDate() {
+        return borrowDate.isBefore(LocalDate.now());
+    }
+
+    public boolean checkReturnDate(LocalDate returnDate) {
+        return returnDate != null && returnDate.isAfter(borrowDate);
     }
 }

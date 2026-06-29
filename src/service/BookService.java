@@ -212,13 +212,27 @@ public class BookService {
         }
     }
 
+    public boolean checkDuplicateId(String id) {
+        String safeId = Validator.validateBasicString(id);
+
+        for (Book book : bookList) {
+            if (book.getBookId().equals(safeId)) {
+                System.out.println("❌ This Book already exists in the system. " +
+                        "Duplicate ID: " + safeId);
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     private boolean isDuplicateBook(String bookId, String title, String author, int publicationYear) {
         String safeTitle = Validator.validateBasicString(title);
         String safeAuthor = Validator.validateBasicString(author);
         int safeYear = Validator.validateNumber(publicationYear);
 
         Book tempBook = new Book("Check duplicate", safeTitle, safeAuthor, "check duplicate",
-                0, 0);
+                safeYear, 0);
 
         for (Book book : bookList) {
             if (bookId != null && book.getBookId().equals(bookId)) {

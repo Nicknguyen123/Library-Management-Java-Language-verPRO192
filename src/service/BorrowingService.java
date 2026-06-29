@@ -50,8 +50,7 @@ public class BorrowingService {
             throw new IllegalArgumentException("❌ Book not found in the system.");
         }
 
-        int curQuantity = book.getQuantity() - book.getBorrowCount();
-        if (curQuantity == 0) {
+        if (!book.checkAvailableQuantity()) {
             throw new IllegalArgumentException("❌ This book is currently out of stock.");
         }
 
@@ -60,12 +59,12 @@ public class BorrowingService {
             throw new IllegalArgumentException("❌ Member not found in the system.");
         }
 
-        if (member.getCurrentBorrowedCount() >= member.getLimitBorrow()) {
+        if (member.checkReachLimit()) {
             throw new IllegalArgumentException("❌ Borrowing limit reached: This Member has already " +
                     "borrowed " + member.getLimitBorrow() + " books and cannot borrow more.");
         }
 
-        if (borrowing.getBorrowDate().isAfter(LocalDate.now())) {
+        if (!borrowing.checkBorrowDate()) {
             throw new IllegalArgumentException("🚫 Invalid Date: The borrow date must be today or earlier." +
                     " Future dates are not allowed.");
         }
@@ -93,7 +92,7 @@ public class BorrowingService {
 
         LocalDate safeReturnDate = Validator.validateDate(returnDate);
 
-        if (returnDate.isBefore(borrowing.getBorrowDate())) {
+        if (!borrowing.checkReturnDate(safeReturnDate)) {
             throw new IllegalArgumentException("❌ Return Date must be after Borrow Date!");
         }
 
@@ -112,18 +111,11 @@ public class BorrowingService {
             return;
         }
 
-        String border = "+-------------------------------------------------------------------------------" +
-                "-------------------------+";
-        System.out.println(border);
-        System.out.printf("| %-15s | %-12s | %-12s | %-12s | %-12s | %-12s | %-10s |\n",
-                "🆔 TX_ID", "📖 BOOK_ID", "👤 MEM_ID", "📅 BORROW_DT",
-                "⏳ DUE_DT", "🔄 RETURN_DT", "💸 FINE");
-        System.out.println(border);
-
         boolean found = false;
         for (Borrowing borrowing : borrowingList) {
             if (borrowing.getReturnDate() == null) {
                 borrowing.showBorrowingInfo();
+                System.out.println("💳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
                 found = true;
             }
         }
@@ -131,7 +123,6 @@ public class BorrowingService {
         if (!found) {
             System.out.println("⚠️ There are no active (unreturned) borrowings at the moment.");
         }
-        System.out.println(border);
     }
 
     public void displayHistoryBorrowing(Member member) {
@@ -142,19 +133,12 @@ public class BorrowingService {
             return;
         }
 
-        String border = "+-------------------------------------------------------------------------------" +
-                "-------------------------+";
-        System.out.println(border);
-        System.out.printf("| %-15s | %-12s | %-12s | %-12s | %-12s | %-12s | %-10s |\n",
-                "🆔 TX_ID", "📖 BOOK_ID", "👤 MEM_ID", "📅 BORROW_DT",
-                "⏳ DUE_DT", "🔄 RETURN_DT", "💸 FINE");
-        System.out.println(border);
-
         boolean found = false;
         for (Borrowing borrowing : borrowingList) {
             Member temp = borrowing.getMember();
             if (temp.getId().equals(member.getId())) {
                 borrowing.showBorrowingInfo();
+                System.out.println("💳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
                 found = true;
             }
         }
@@ -163,7 +147,6 @@ public class BorrowingService {
             System.out.printf("⚠️ No borrowing history found for Member ID: %s (%s)\n",
                     member.getId(), member.getName());
         }
-        System.out.println(border);
     }
 
 
@@ -179,7 +162,7 @@ public class BorrowingService {
         return null;
     }
 
-    private Borrowing findBorrowingByReturnDate(String id) {
+    public Borrowing findBorrowingByReturnDate(String id) {
         String safeId = Validator.validateBasicString(id);
 
         for (Borrowing borrowing : borrowingList) {
@@ -215,4 +198,6 @@ public class BorrowingService {
 
         return false;
     }
+
+
 }

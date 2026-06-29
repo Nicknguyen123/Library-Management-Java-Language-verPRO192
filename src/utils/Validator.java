@@ -93,6 +93,14 @@ public class Validator {
         return true;
     }
 
+    public static boolean checkBorrowingId(String id) {
+        if (!id.matches(BORROWING_ID_FORMAT)) {
+            return false;
+        }
+
+        return true;
+    }
+
     public static boolean checkName(String s) {
         for (int i = 0; i < s.length(); i++) {
             if (!Character.isLetter(s.charAt(i)) && !Character.isWhitespace(s.charAt(i))) {

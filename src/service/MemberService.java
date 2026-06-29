@@ -157,6 +157,20 @@ public class MemberService {
         }
     }
 
+    public boolean checkDuplicateId(String id) {
+        String safeId = Validator.validateBasicString(id);
+
+        for (Member member : memberList) {
+            if (member.getId().equals(safeId)) {
+                System.out.println("❌ This Member already exists in the system. " +
+                        "Duplicate ID: " + safeId);
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public boolean checkDuplicatePhone(String phoneNumber) {
         String safePhone = Validator.validateBasicString(phoneNumber);
 

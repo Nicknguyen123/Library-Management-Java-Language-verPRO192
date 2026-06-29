@@ -2,6 +2,10 @@ package utils;
 
 import service.MemberService;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 import java.util.Scanner;
 
 public class InputHelper {
@@ -65,6 +69,21 @@ public class InputHelper {
             }
 
             System.out.println("🆔 Valid ID! Book format checked successfully.");
+            return input;
+        }
+    }
+
+    public String readBorrowingId(String message) {
+        while (true) {
+            String input = readStringNonEmpty(message).toUpperCase();
+
+            if (!Validator.checkBorrowingId(input)) {
+                System.out.println("❌ Invalid ID format! Borrowing ID must start with " +
+                        "'BOR' followed by 4 digits (e.g., BOR0001).");
+                continue;
+            }
+
+            System.out.println("🆔 Valid ID! Borrowing format checked successfully.");
             return input;
         }
     }
@@ -177,5 +196,19 @@ public class InputHelper {
         }
     }
 
+    public LocalDate readDate(String message) {
+        while (true) {
+            String input = readStringNonEmpty(message);
+
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/uuuu").
+                    withResolverStyle(ResolverStyle.STRICT);
+            try {
+                return LocalDate.parse(input, formatter);
+            } catch (DateTimeParseException e) {
+                System.out.println("❌ The date entered is invalid. Please use the format DD/MM/YYYY " +
+                        "(e.g., 08/06/2026).");
+            }
+        }
+    }
 
 }

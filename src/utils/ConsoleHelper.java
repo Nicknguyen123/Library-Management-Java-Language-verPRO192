@@ -257,4 +257,86 @@ public class ConsoleHelper {
         System.out.println("   [ERROR] ID must start with 'BK' followed by 3 digits (e.g., BK001, BK015).");
         System.out.println("⚠️ ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ ⚠️");
     }
+
+    // ======================== Borrowing ======================================
+    public void borrowingMenu() {
+        System.out.println("⏳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━⏳");
+        System.out.println("   📜              BORROWING MANAGEMENT                📜   ");
+        System.out.println("⏳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━⏳");
+        System.out.println("   1. ✨  Borrow a Book");
+        System.out.println("   2. 💫  Return a Book");
+        System.out.println("   3.  ⚡  View All Borrowed Books (Currently Out)");
+        System.out.println("   4. 🛰️  View Borrowing History for a Specific Member");
+        System.out.println("   0. ↩️  Back to Main Menu");
+        System.out.println("⏳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━⏳");
+    }
+
+    public void borrowBookHeading() {
+        System.out.println("👜━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━👜");
+        System.out.println("   ⚙️                  BORROW BOOK PROCESS               ⚙️   ");
+        System.out.println("👜━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━👜");
+    }
+
+    public void returnBookHeading() {
+        System.out.println("📥━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━📥");
+        System.out.println("   ⚙️                  RETURN BOOK PROCESS               ⚙️   ");
+        System.out.println("📥━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━📥");
+    }
+
+    public void viewCurrentBorrowedBookHeading() {
+        System.out.println("🔍━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━🔍");
+        System.out.println("⚙️             VIEW ALL BORROWED BOOKS (CURRENTLY OUT)          ⚙️   ");
+        System.out.println("🔍━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━🔍");
+    }
+
+    public void viewBorrowingHistory() {
+        System.out.println("📜━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━📜");
+        System.out.println("📚                  VIEW BORROWING HISTORY                  📚");
+        System.out.println("📜━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━📜");
+    }
+
+    public void idNoteForBorrowing() {
+        System.out.println("ID must start with 'BOR' followed by 3 digits (e.g., BOR001, BOR015).");
+        System.out.println("ID must start with 'BK' followed by 3 digits (e.g., BK001, BK015).");
+        System.out.println("ID must start with 'PRE' followed by 3 digits (e.g., PRE001, PRE015).");
+        System.out.println("ID must start with 'REG' followed by 3 digits (e.g., REG001, REG015).");
+        System.out.println("💡 Required format: DD/MM/YYYY (e.g., 08/06/2026)");
+    }
+
+    // ============================ Report ==============================
+    public void reportMenu() {
+        System.out.println("📊━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━📊");
+        System.out.println("   📈              REPORTING MANAGEMENT                📈        ");
+        System.out.println("📊━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━📊");
+        System.out.println("   1. 📋 View All Currently Borrowed Books");
+        System.out.println("   2. 🚨 Track Overdue Books & Deadlines");
+        System.out.println("   3. 🔥 Check Most Popular Books (Trending)");
+        System.out.println("   4. 👥 View Top Members With Most Borrowings");
+        System.out.println("   0. ↩️ Back to Main Menu");
+        System.out.println("📊━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━📊");
+    }
+
+    public void viewAllCurrentBorrowedBookHeading() {
+        System.out.println("📚━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━📚");
+        System.out.println("   🔍      VIEW ALL CURRENTLY BORROWED BOOKS           🔍   ");
+        System.out.println("📚━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━📚");
+    }
+
+    public void viewOverdueBookHeading() {
+        System.out.println("⏰━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━⏰");
+        System.out.println("📕                    VIEW ALL OVERDUE BOOKS                    📕");
+        System.out.println("⏰━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━⏰");
+    }
+
+    public void viewPopularBookHeading() {
+        System.out.println("🔥━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━🔥");
+        System.out.println("📚                VIEW MOST POPULAR BOOKS (TRENDING)                📚");
+        System.out.println("🔥━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━🔥");
+    }
+
+    public void viewPopularMemberHeading() {
+        System.out.println("🏆━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━🏆");
+        System.out.println("👥           VIEW TOP MEMBERS WITH MOST BORROWINGS           👥");
+        System.out.println("🏆━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━🏆");
+    }
 }
