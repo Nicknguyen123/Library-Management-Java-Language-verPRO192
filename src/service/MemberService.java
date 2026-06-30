@@ -15,7 +15,6 @@ public class MemberService {
     private final List<Member> memberList;
     private final MemberRepository memberRepository;
 
-
     public MemberService(MemberRepository memberRepository) {
         this.memberList = new ArrayList<>();
         this.memberRepository = memberRepository;
@@ -197,5 +196,70 @@ public class MemberService {
         return false;
     }
 
+    // ========================== MEMBERSERVICE VER MANUAL TEST ============================
+    public void addMemberVerTest(Member member) {
+        checkMemberNull(member);
 
+        String memberId = member.getId();
+        if (findMemberById(memberId) != null) {
+            throw new IllegalArgumentException("❌ This Member already exists in the system. " +
+                    "Duplicate ID: " + memberId);
+        }
+
+        if (checkDuplicatePhone(member.getPhone())) {
+            throw new IllegalArgumentException("❌ Phone number already registered: " + member.getPhone());
+        }
+
+        if (checkDuplicateEmail(member.getEmail())) {
+            throw new IllegalArgumentException("❌ Email already registered: " + member.getEmail());
+        }
+
+        memberList.add(member);
+    }
+
+    public void deleteMemberVerTest(String memberId) {
+        String safeId = Validator.validateBasicString(memberId);
+
+        for (int i = 0; i < memberList.size(); i++) {
+            if (memberList.get(i).getId().equals(safeId)) {
+                memberList.remove(i);
+                return;
+            }
+        }
+
+        throw new IllegalArgumentException("⚠️ Alert: Unable to remove. No member found with the specified ID: "
+                + safeId);
+    }
+
+    public void updateNameVerTest(Member member, String newName) {
+        checkMemberNull(member);
+
+        String safeName = Validator.validateBasicString(newName);
+
+        member.setName(safeName);
+    }
+
+    public void updatePhoneVerTest(Member member, String newPhone) {
+        checkMemberNull(member);
+
+        String safePhone = Validator.validateBasicString(newPhone);
+
+        if (checkDuplicatePhone(safePhone)) {
+            throw new IllegalArgumentException("❌ Phone number already registered: " + safePhone);
+        }
+
+        member.setPhone(safePhone);
+    }
+
+    public void updateEmailVerTest(Member member, String newEmail) {
+        checkMemberNull(member);
+
+        String safeEmail = Validator.validateBasicEmail(newEmail);
+
+        if (checkDuplicateEmail(safeEmail)) {
+            throw new IllegalArgumentException("❌ Email already registered: " + safeEmail);
+        }
+
+        member.setEmail(safeEmail);
+    }
 }

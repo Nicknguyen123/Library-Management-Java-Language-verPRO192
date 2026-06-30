@@ -87,6 +87,7 @@ public class BorrowingService {
         borrowingList.add(borrowing);
     }
 
+
     public void returnBook(Borrowing borrowing, LocalDate returnDate) {
         checkBorrowNull(borrowing);
 
@@ -199,5 +200,46 @@ public class BorrowingService {
         return false;
     }
 
+    // ========================= BORROWING VER MANUAL TEST ========================================
+    public void borrowBookVerTest(Borrowing borrowing) {
+        checkBorrowNull(borrowing);
 
+        if (findBorrowingById(borrowing.getTransactionId()) != null) {
+            throw new IllegalArgumentException("❌ This Borrowing already exists in the system. " +
+                    "Duplicate ID: " + borrowing.getTransactionId());
+        }
+
+        Book book = bookService.findBookById(borrowing.getBook().getBookId());
+        if (book == null) {
+            throw new IllegalArgumentException("❌ Book not found in the system.");
+        }
+
+        if (!book.checkAvailableQuantity()) {
+            throw new IllegalArgumentException("❌ This book is currently out of stock.");
+        }
+
+        Member member = memberService.findMemberById(borrowing.getMember().getId());
+        if (member == null) {
+            throw new IllegalArgumentException("❌ Member not found in the system.");
+        }
+
+        if (member.checkReachLimit()) {
+            throw new IllegalArgumentException("❌ Borrowing limit reached: This Member has already " +
+                    "borrowed " + member.getLimitBorrow() + " books and cannot borrow more.");
+        }
+
+        if (!borrowing.checkBorrowDate()) {
+            throw new IllegalArgumentException("🚫 Invalid Date: The borrow date must be today or earlier." +
+                    " Future dates are not allowed.");
+        }
+
+        boolean isDuplicate = checkDuplicateBorrowing(member.getId(), book.getBookId());
+        if (isDuplicate) {
+            throw new IllegalArgumentException("🚫 Duplicate Book Error: You cannot borrow the same book twice!");
+        }
+
+        borrowingList.add(borrowing);
+        book.increaseBorrowCount();
+        member.increaseBorrowCount();
+    }
 }

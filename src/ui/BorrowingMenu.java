@@ -214,7 +214,7 @@ public class BorrowingMenu {
             System.out.println("👉 Note: The return date must be AFTER or EQUAL to the borrowed date!");
             System.out.println("──────────────────────────────────────────────────────────");
 
-            LocalDate returnDate = checkReturnDateAfterInput(borrowing);
+            LocalDate returnDate = inputHelper.readDate("📅 Enter the return date: ");
 
             try {
                 borrowingService.returnBook(borrowing, returnDate);
